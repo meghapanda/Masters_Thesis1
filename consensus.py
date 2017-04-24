@@ -7,31 +7,17 @@ Created on Tue Feb 14 01:05:41 2017
 """
 
 import numpy as np
-#np.set_printoptions(suppress=True)  
-#
-#
-#data_path = 'BLindTestDTA/*.dta' 
-#spectra_list={}
-#files=glob.glob(data_path) 
-#number_data_points=len(files)
-#
-#count=101
-#for file_spectra in files:     
-#    spectra_list[count]=np.loadtxt(file_spectra)
-#    count=count+1
-## Reading the key for consensus List
-#
-#fname='Key Mapped - concensus.csv'
-#
-#concensus_key=np.genfromtxt(fname, dtype=None, delimiter='->',names=True)
+import os 
+
 def concensus_ms(concensus_key,spectra_list):
     
     if (concensus_key.size==1):
         concensus_key=concensus_key.flatten()
     count=0
     for sequence in concensus_key:
-        concensus_list=[np.int16(el) for el in sequence[1].split(',')]
-    
+        concensus_list=[
+                        el for el in sequence[1].split(',')]
+            
         concensus_mass=0
         concensus_charge=2
         
@@ -43,6 +29,7 @@ def concensus_ms(concensus_key,spectra_list):
         concensus_mass=concensus_mass/len(concensus_list)
         
         concensus_spectrum=concensus_spectrum[concensus_spectrum[:, 0].argsort()]
+        
         
         
         threshold=0.1
@@ -66,7 +53,7 @@ def concensus_ms(concensus_key,spectra_list):
         concensus_spectrum=np.row_stack((np.array((concensus_mass,concensus_charge)),concensus_spectrum))   
         
                 
-        file_name='Consen/'+sequence[0]+'.dta'
+        file_name=os.path.join('D:\Megha\Consen\\' +sequence[0]+'.dta')
         np.savetxt(file_name, concensus_spectrum, delimiter=' ')     
                                           
 

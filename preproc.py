@@ -11,6 +11,5 @@ def process(data,strong_peaks):
 	if len(Spectrum_data)<strong_peaks:
 		return Spectrum_data
 	else:
-		temp=Spectrum_data[Spectrum_data[:,1].argsort()][::-1][0:strong_peaks]
-		return temp
-#              return temp[temp[:,0].argsort()]
+         temp=Spectrum_data[Spectrum_data[:,1].argsort()][::-1][0:strong_peaks]
+         return temp[temp[:,0].argsort()]
