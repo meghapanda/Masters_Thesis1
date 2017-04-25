@@ -103,5 +103,5 @@ for a_file in all_files:
     
     
     
-    print(file_name,len(Identity),len(Homology),len(Sequence))
+    print(a_file.split('/')[-1],len(Identity),len(Homology),len(Sequence))
         #np.savetxt('Res_main_cluster_final.csv',final_result, delimiter=",",header="'file','Identity','homology','sequence'", fmt="%s") 
