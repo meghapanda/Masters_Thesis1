@@ -9,19 +9,20 @@ import numpy as np
 import glob
 import math
 import os
+import json
 
-data_path=os.path.abspath("D:\Megha\New Data\Mix_1\LCQ_Deca\mzXML\LQ20051019_LCQ_18MIX01_03/*.dta")
+data_path=os.path.abspath("/Users/meghapanda/Documents/Msc_Project/Code/BLINDTestDTA/*.dta")
 files=glob.glob(data_path) 
 space=['\n','\n']
 
 
 
         
-
+file_save_search=[]
 number_of_files_in_each_search=1200
 number_of_search_files=int(math.ceil(float(len(files))/float(number_of_files_in_each_search)))
 for index in range(number_of_search_files):
-    file_name="D:\\Megha\\Results\\Mix1\\LCQ_Deca\\indivisual\\" +str(index)+'_'
+    file_name="/Users/meghapanda/Documents/Msc_Project/Code/indivisual/" +str(index)+'_'
 #    for index in range(number_of_search_files):
     if ((index+1)*number_of_files_in_each_search>=len(files)):
         last=len(files)
@@ -51,13 +52,16 @@ for index in range(number_of_search_files):
     query_map=np.column_stack((query_map_temp['file_name'],query_map_temp['query']))
     query_map=np.row_stack((['file','query'],query_map))   
     
-    f =  open(os.path.join(file_name+'indivsual_part.dta'), 'w')
+    f =  open(os.path.join(file_name+'.dta'), 'w')
     
     for element in consolidated_file:
         f.write(element)
     f.close()
     
-    np.savetxt(os.path.join(file_name+'merge_query_key.csv'),query_map, delimiter=",", fmt="%s") 
+    np.savetxt(os.path.join(file_name+'merge_query_key.csv'),query_map, delimiter=",", fmt="%s")
+    file_save_search.append([file_name.split('/')[-1],last-begin])
+    with open(os.path.join(file_name+'file_search.txt'),'w')as outfile:
+        json.dump(file_save_search,outfile)
  
 
 

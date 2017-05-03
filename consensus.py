@@ -53,7 +53,7 @@ def concensus_ms(concensus_key,spectra_list):
         concensus_spectrum=np.row_stack((np.array((concensus_mass,concensus_charge)),concensus_spectrum))   
         
                 
-        file_name=os.path.join('D:\Megha\Consen\\' +sequence[0]+'.dta')
+        file_name=os.path.join('/Users/meghapanda/Documents/Msc_Project/Code/Consen/' +sequence[0]+'.dta')
         np.savetxt(file_name, concensus_spectrum, delimiter=' ')     
                                           
 

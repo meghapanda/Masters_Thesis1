@@ -13,8 +13,9 @@ import os
 
 #eps=[0.8]
 #min_samples=[1]
-all_files_path='/Users/meghapanda/Documents/Msc_Project/Code/hierarchical_full/*.dta'
+all_files_path='/Users/meghapanda/Documents/Msc_Project/Code/indivisual/*.dta'
 all_files=glob.glob(all_files_path)
+all_files=[all_files[0]]
 print('File_name,Identity,Homology,Sequence')
 for a_file in all_files:
     file_name=a_file[:-4]
@@ -37,7 +38,7 @@ for a_file in all_files:
     ##query key from from merge
     temp_key = np.genfromtxt(os.path.join(file_name+'merge_query_key.csv'), dtype=None, delimiter=',', names=True)
     #mapped from clustering
-    cluster_key= np.genfromtxt(os.path.join(file_name+'query_mapped.csv'), dtype=None, delimiter='->',names=True)
+    cluster_key= np.genfromtxt(os.path.join(file_name+'query_mapped.csv'), dtype=[ ('cluster', 'S50'),('file_name', 'object')] , delimiter='->',names=True)
     
     
     final_result=[]

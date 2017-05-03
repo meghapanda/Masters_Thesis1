@@ -10,20 +10,20 @@ import os
 import glob
 
 def merge(file_name):
-    data_path='D:\Megha\Consen\*.dta'
+    data_path='/Users/meghapanda/Documents/Msc_Project/Code/Consen/*.dta'
     files=glob.glob(data_path) 
     consolidated_file=[]
     space=['\n','\n']
     
     query_map_temp=[]
      
-    dtype = [ ('mass', float),('file_name', 'S50'),('query', 'int')] 
+    dtype = [ ('mass', float),('file_name', 'object'),('query', 'int')] 
     
     for file_content in files: 
         with open(file_content) as f:
             content = f.readlines()
             consolidated_file=consolidated_file+content+space
-            temp=(float(content[0].split(' ')[0]),file_content.split('\\')[-1][:-4],0)
+            temp=(float(content[0].split(' ')[0]),file_content.split('/')[-1][:-4],0)
             query_map_temp.append(temp)
         
     query_map_temp = np.array(query_map_temp, dtype=dtype)
