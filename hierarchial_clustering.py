@@ -50,13 +50,15 @@ distance_matrix_condensed=np.load(os.path.join(file_name_main+'distance_matrix.n
 #    for item_y in range (item_x+1,len(spectra_list.keys())):
 #        similarity=sim(spectra_list[spectra_list.keys()[item_x]],spectra_list[spectra_list.keys()[item_y]])
 #        distance_matrix_condensed.append(1-similarity)
-# np.save(os.path.join(file_name_main+'\dist_matrix_c.npy'),distance_matrix_condensed)
+#np.save(os.path.join(file_name_main+'distance_matrix.npy'),distance_matrix_condensed)
 
 
 linkage_matrix=sp.linkage(distance_matrix_condensed,method='complete')
 
 
 threshold=[ 0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9]
+#threshold=[0]
+#threshold=[s*0.001 for s in threshold]
 #eps=[0.9]
 #min_samples=[1]
 
